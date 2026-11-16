@@ -7,7 +7,20 @@
 </head>
 <body>
     <div class="box">
-        <h2>Data Voucher <a href="{{ route('vouchers.create') }}" class="btn float-r">+ Tambah</a></h2>
+        <h2>Data Voucher
+            @if (auth()->user()->role === 'admin')
+                <a href="{{ route('vouchers.create') }}" class="btn float-r">+ Tambah</a>
+            @endif
+        </h2>
+
+        <div class="userbar">
+            Login sebagai <b>{{ auth()->user()->name }}</b> ({{ auth()->user()->role }})
+            <form action="{{ route('logout') }}" method="POST" class="inline">
+                @csrf
+                <button type="submit" class="btn-red">Logout</button>
+            </form>
+        </div>
+
         <table>
             <thead>
                 <tr>
@@ -28,13 +41,17 @@
                     </td>
                     <td>Rp {{ number_format($v->syarat, 0, ',', '.') }}</td>
                     <td>
-                        <a href="{{ route('vouchers.edit', $v) }}" class="btn">Edit</a>
-                        <form action="{{ route('vouchers.destroy', $v) }}" method="POST" class="inline"
-                              onsubmit="return confirm('Yakin ingin menghapus voucher ini?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn-red">Hapus</button>
-                        </form>
+                        @if (auth()->user()->role === 'admin')
+                            <a href="{{ route('vouchers.edit', $v) }}" class="btn">Edit</a>
+                            <form action="{{ route('vouchers.destroy', $v) }}" method="POST" class="inline"
+                                  onsubmit="return confirm('Yakin ingin menghapus voucher ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-red">Hapus</button>
+                            </form>
+                        @else
+                            -
+                        @endif
                     </td>
                 </tr>
                 @empty

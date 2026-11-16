@@ -57,3 +57,6 @@ form input, form select { width: 100%;
     cursor: pointer; }
     
 .inline { display: inline; }
+
+.userbar { margin-bottom: 15px;
+    font-size: 14px; }
