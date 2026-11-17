@@ -41,18 +41,20 @@
                     </td>
                     <td>Rp {{ number_format($v->syarat, 0, ',', '.') }}</td>
                     <td>
-                        @if (auth()->user()->role === 'admin')
-                            <a href="{{ route('vouchers.edit', $v) }}" class="btn">Edit</a>
-                            <form action="{{ route('vouchers.destroy', $v) }}" method="POST" class="inline"
-                                  onsubmit="return confirm('Yakin ingin menghapus voucher ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-red">Hapus</button>
-                            </form>
-                        @else
-                            -
-                        @endif
-                    </td>
+    @if (auth()->user()->role === 'admin')
+        <div class="aksi">
+            <a href="{{ route('vouchers.edit', $v) }}" class="btn">Edit</a>
+            <form action="{{ route('vouchers.destroy', $v) }}" method="POST"
+                  onsubmit="return confirm('Yakin ingin menghapus voucher ini?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn-red">Hapus</button>
+            </form>
+        </div>
+    @else
+        -
+    @endif
+</td>
                 </tr>
                 @empty
                 <tr><td colspan="5">Belum ada voucher</td></tr>

@@ -2,12 +2,12 @@
     font-family: sans-serif;
     margin: 0; }
 
-body { background: #cbcccc;
+body { background: #ebebeb;
        padding: 40px 20px;
        color: #333; }
 
 .box { max-width: 650px;
-    background: #e3e1e1;
+    background: #ffffff;
     margin: auto;
     padding: 20px;
     border-radius: 8px;
@@ -26,7 +26,7 @@ table { width: 100%;
         text-align: left; }
 
 th, td { padding: 10px;
-    border-bottom: 1px solid #ddd; }
+    border-bottom: 1px solid #000; }
 
 th { background: #000000;
     color: #fff; }
@@ -58,5 +58,16 @@ form input, form select { width: 100%;
     
 .inline { display: inline; }
 
-.userbar { margin-bottom: 15px;
+.userbar { margin-bottom: 70px;
     font-size: 14px; }
+
+    .aksi { display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap; }
+
+.aksi .btn, .aksi .btn-red { font-size: 14px;
+    padding: 6px 12px;
+    line-height: 1.2; }
+
+.aksi form { margin: 0; }
